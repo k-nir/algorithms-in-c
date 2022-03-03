@@ -1,0 +1,10 @@
+graph {
+    graph [nodesep=0.1,ranksep=0.1,fontsize=12]
+
+    node [shape=circle,fixedsize=true,width=0.3,fontsize=10,style=filled,fillcolor=lightgray]
+    0
+    
+    N -- "N-1" -- "N-2"
+    "N-2" -- 2 [style=dotted,minlen=3]
+    2 -- 1
+}

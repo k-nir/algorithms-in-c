@@ -1,0 +1,15 @@
+graph {
+    graph [nodesep=0.1,ranksep=0.1,fontsize=12]
+
+    node [shape=circle,fixedsize=true,width=0.3,fontsize=10,style=filled,fillcolor=lightgray]
+    
+    0 -- 1
+    0 -- 2
+    0 -- 3
+    3 -- 4
+    5 -- 6
+    5 -- 7
+    5 -- 8
+    5 -- 9
+    5 -- 10
+}
