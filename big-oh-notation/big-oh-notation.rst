@@ -172,7 +172,7 @@ Big-Oh Notation
 上述定义可用精简的数学语言描述为:
 
 .. math::
-	g(N) = O(f(N)) \leftrightarrow \exists c_0 \in \mathbb{N}\,,\,\exists N_0 \in \mathbb{R}_{\ge0}\,,\,\forall N \geqslant N_0 : g(N) \leqslant c_0 \cdot f(N)
+	g(N) = O(f(N)) \leftrightarrow \exists c_0 \in \mathbb{R}_{+}\,,\,\exists N_0 \in \mathbb{N} \,,\,\forall N \in \mathbb{N} \,,\, N \geqslant N_0 : g(N) \leqslant c_0 \cdot f(N)
 	
 在算法分析涉及的问题中，以下两种最常使用大O表达式:
 
