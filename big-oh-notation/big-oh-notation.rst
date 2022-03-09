@@ -289,5 +289,171 @@ Big-Oh Notation
 只进行非常笼统的计算时，可以将其简化为 :math:`f(n) = O(n^3)`。
 
 
-大O表示法的运算法则
-===================
+大O表示法的运算
+================
+
+习题2.21-4 证明: :math:`f(N) - g(N) = O(h(N)) \rightarrow f(N) = g(N) + O(h(N))`
+
+证明. 
+
+.. math::
+	\because 
+	& f(N) - g(N) = O(h(N)) 
+	\leftrightarrow 
+	\exists c_0 > 0 \,,\,
+	\exists N_0 \geqslant 0 \,,\,
+	\forall N \geqslant N_0: 
+	f(N) - g(N) \leqslant c_0h(N)
+	\\
+	\therefore 
+	& \exists c_0 > 0 \,,\,
+	\exists N_0 \geqslant 0 \,,\,
+	\forall N \geqslant N_0: 
+	f(N) \leqslant g(N) + c_0h(N) 
+	\leftrightarrow 
+	f(N) = g(N) + O(h(N))
+
+习题2.21-5 证明: :math:`O(f(N))O(g(N)) \rightarrow O(f(N)g(N))`
+
+证明.
+
+.. math::
+	\because
+	& h(N) = O(f(N))O(g(N)) 
+	\leftrightarrow 
+	\exists c_f > 0 \,,\,
+	\exists c_g > 0 \,,\,
+	\exists N_f \geqslant 0 \,,\,
+	\exists N_g \geqslant 0 \,,\,
+	\forall N \geqslant max(N_f, N_g):
+	h(N) \leqslant c_f c_g f(N) g(N)
+	\\
+	\therefore
+	& \exists c_0 = c_f c_g \,,\,
+	\exists N_0 = max(N_f, N_g) \,,\,
+	\forall N \geqslant N_0:
+	h(N) \leqslant c_0 f(N) g(N)
+	\leftrightarrow
+	h(N) = O(f(N)g(N))
+	\\
+	\therefore
+	& O(f(N))O(g(N))
+	\rightarrow
+	O(f(N)g(N))
+
+习题2.21-6 证明: :math:`O(f(N)) + O(g(N)) \rightarrow O(g(N)) \quad\text{if }\, f(N) = O(g(N))`
+
+证明.
+
+.. math::
+	\because
+	& h(N) = O(f(N)) + O(g(N))
+	\leftrightarrow
+	\exists c_f > 0 \,,\,
+	\exists c_g > 0 \,,\,
+	\exists N_f \geqslant 0 \,,\,
+	\exists N_g \geqslant 0 \,,\,
+	\forall N \geqslant max(N_f, N_g):
+	h(N) \leqslant c_f f(N) + c_g g(N)
+	\\
+	\because
+	& f(N) = O(g(N))
+	\leftrightarrow
+	\exists c_a > 0 \,,\,
+	\exists N_a \leqslant 0 \,,\,
+	\forall N \geqslant N_a:
+	f(N) \leqslant c_a g(N)
+	\\
+	\therefore
+	& h(N) \leqslant c_f c_a g(N) + c_g g(N)
+	\\
+	\therefore
+	& \exists c_0 = c_f c_a + c_g \,,\,
+	\exists N_0 = max(N_a, N_f, N_g) \,,\,
+	\forall N \geqslant N_0:
+	h(N) \leqslant c_0 g(N)
+	\leftrightarrow
+	h(N) = O(g(N))
+	\\
+	\therefore
+	& O(f(N)) + O(g(N))
+	\rightarrow
+	O(g(N)) \quad\text{if }\, f(N) = O(g(N))
+	
+习题2.22 证明: :math:`(N + 1)(H_N + O(1)) = NlnN + O(N)`
+
+证明.
+
+.. math::
+	\because
+	& H_N = NlnN + \gamma + O\left(\frac{1}{N}\right)
+	\\
+	\therefore
+	 & (N + 1)(H_N + O(1)) \\
+	=& (N + 1)(lnN + \gamma + O\left(\frac{1}{N}\right) + O(1)) \\
+	=& (N + 1)lnN + (N + 1)\gamma + (N + 1)O\left(\frac{1}{N}\right) + (N + 1)O(1) \\
+	=& (N + 1)lnN + (N + 1)\gamma + NO\left(\frac{1}{N}\right) + O\left(\frac{1}{N}\right) + NO(1) + O(1) \\
+	=& (N + 1)lnN + (N + 1)\gamma + O(1) + O\left(\frac{1}{N}\right) + O(N) + O(1) \\
+	=& (N + 1)lnN + O(N) + O\left(\frac{1}{N}\right) + O(1) \\
+	=& NlnN + lnN + O(N) + O\left(\frac{1}{N}\right) + O(1) \\
+	\leftrightarrow
+	& \exists c_1 > 0 \,,\,
+	\exists c_2 > 0 \,,\,
+	\exists c_3 > 0 \,,\, \\
+	& \exists N_1 \geqslant 0 \,,\,
+	\exists N_2 \geqslant 0 \,,\,
+	\exists N_3 \geqslant 0 \,,\, \\
+	& \forall N \geqslant max(N_1, N_2, N_3):
+	NlnN + lnN \leqslant NlnN + lnN + c_1 N + \frac{c_2}{N} + c_3
+	\\
+	\because
+	& lnN < N \quad\text{for}\, N \geqslant 1
+	\\
+	\because
+	& \frac{c_2}{N} \leqslant c_2 N \quad\text{for}\, N \geqslant 1
+	\\
+	\because
+	& c_3 \leqslant c_3 N \quad\text{for}\, N \geqslant 1
+	\\
+	\therefore
+	& \forall N \geqslant max(N_1, N_2, N_3, 1):
+	NlnN + lnN \leqslant NlnN + N + c_1 N + c_2 N + c_3 N \\
+	\rightarrow
+	& \exists c_0 = c_1 + c_2 + c_3 + 1 \,,\,
+	\exists N_0 = max(N_1, N_2, N_3, 1) \,,\, \\
+	& \forall N \geqslant N_0:
+	NlnN + lnN \leqslant NlnN + c_0 N
+	\\
+	\therefore
+	& NlnN + lnN + O(N) + O\left(\frac{1}{N}\right) + O(1) = NlnN + O(N) \\
+	\rightarrow
+	& (N + 1)(H_N + O(1)) = NlnN + O(N)
+	
+习题2.23 证明: :math:`NlnN = O(N^{3/2})`
+
+证明. 设 :math:`f(N) = NlnN`，设 :math:`g(N) = c_0 N^{3/2}\,,\,c_0 \in R_+`
+
+由此可得 :math:`\frac{f(N)}{N} = lnN`，:math:`\frac{g(N)}{N} = c_0\sqrt{N}`
+
+:math:`N \geqslant 1` 时，:math:`\frac{f(N)}{N}` 在 :math:`N` 附近的斜率为
+
+.. math::
+	\left(\frac{f(N)}{N}\right)^' = (lnN)^' = \frac{1}{N}
+	
+:math:`N \geqslant 1` 时，:math:`\frac{g(N)}{N}` 在 :math:`N` 附近的斜率为
+
+.. math::
+	\left(\frac{g(N)}{N}\right)^' = (c_0\sqrt{N})^' = \frac{c_0}{2\sqrt{N}}
+	
+比较两者，得
+
+.. math::
+	\frac{c_0}{2\sqrt{N}} / \frac{1}{N} = \frac{c_0\sqrt{N}}{2}
+	
+可见，:math:`c_0 \geqslant 2 \,,\, N \geqslant 1` 时，:math:`\frac{g(N)}{N}` 的斜率一定比 :math:`\frac{f(N)}{N}` 的大。
+
+又因为，:math:`c_0 = 2 \,,\, N = 1` 时，:math:`\frac{g(N)}{N} = 1`，:math:`\frac{f(N)}{N} = 0`，即 :math:`\frac{g(N)}{N} > \frac{f(N)}{N}`。
+
+所以，:math:`c_0 \geqslant 2 \,,\, N \geqslant 1` 时，:math:`\frac{g(N)}{N}` 的初始值和后续斜率都大于 :math:`\frac{f(N)}{N}`，因此可以断定 :math:`\frac{g(N)}{N}` 是 :math:`\frac{f(N)}{N}` 的上界。
+
+所以，:math:`c_0 \geqslant 2 \,,\, N \geqslant 1` 时，:math:`NlnN < c_0 N^{3/2}` 一定成立，因此可以说 :math:`NlnN = O(N^{3/2})`。
