@@ -292,7 +292,7 @@ Big-Oh Notation
 大O表示法的运算
 ================
 
-习题2.21-4 证明: :math:`f(N) - g(N) = O(h(N)) \rightarrow f(N) = g(N) + O(h(N))`
+**习题2.21-4** 证明: :math:`f(N) - g(N) = O(h(N)) \rightarrow f(N) = g(N) + O(h(N))`
 
 证明. 
 
@@ -313,7 +313,7 @@ Big-Oh Notation
 	\leftrightarrow 
 	f(N) = g(N) + O(h(N))
 
-习题2.21-5 证明: :math:`O(f(N))O(g(N)) \rightarrow O(f(N)g(N))`
+**习题2.21-5** 证明: :math:`O(f(N))O(g(N)) \rightarrow O(f(N)g(N))`
 
 证明.
 
@@ -341,7 +341,7 @@ Big-Oh Notation
 	\rightarrow
 	O(f(N)g(N))
 
-习题2.21-6 证明: :math:`O(f(N)) + O(g(N)) \rightarrow O(g(N)) \quad\text{if }\, f(N) = O(g(N))`
+**习题2.21-6** 证明: :math:`O(f(N)) + O(g(N)) \rightarrow O(g(N)) \quad\text{if }\, f(N) = O(g(N))`
 
 证明.
 
@@ -380,7 +380,7 @@ Big-Oh Notation
 	\rightarrow
 	O(g(N)) \quad\text{if }\, f(N) = O(g(N))
 	
-习题2.22 证明: :math:`(N + 1)(H_N + O(1)) = NlnN + O(N)`
+**习题2.22** 证明: :math:`(N + 1)(H_N + O(1)) = NlnN + O(N)`
 
 证明.
 
@@ -429,7 +429,7 @@ Big-Oh Notation
 	\rightarrow
 	& (N + 1)(H_N + O(1)) = NlnN + O(N)
 	
-习题2.23 证明: :math:`NlnN = O(N^{3/2})`
+**习题2.23** 证明: :math:`NlnN = O(N^{3/2})`
 
 证明. 设 :math:`f(N) = NlnN`，设 :math:`g(N) = c_0 N^{3/2}\,,\,c_0 \in R_+`
 
@@ -457,3 +457,54 @@ Big-Oh Notation
 所以，:math:`c_0 \geqslant 2 \,,\, N \geqslant 1` 时，:math:`\frac{g(N)}{N}` 的初始值和后续斜率都大于 :math:`\frac{f(N)}{N}`，因此可以断定 :math:`\frac{g(N)}{N}` 是 :math:`\frac{f(N)}{N}` 的上界。
 
 所以，:math:`c_0 \geqslant 2 \,,\, N \geqslant 1` 时，:math:`NlnN < c_0 N^{3/2}` 一定成立，因此可以说 :math:`NlnN = O(N^{3/2})`。
+
+**习题2.24** 证明: 对于任意 :math:`M` 和常量 :math:`\alpha > 1`，都有 :math:`N^M = O(\alpha)^N`
+
+证明. 对 :math:`N^M` 求 :math:`M` 次导，得
+
+.. math::
+	(N^M)^{[M]} = M \cdot (M-1) \cdot (M-2) \cdot \ldots \cdot 2 \cdot 1
+	
+可见结果是一个常数。
+
+对 :math:`\alpha^N` 求 :math:`M` 次导，得
+
+.. math::
+	(\alpha^N)^{[M]} = \alpha^N \cdot (ln\alpha)^M
+	
+结果是一个底数大于1的指数函数。因此，对于任意常数，都必然存在 :math:`N` 使得 :math:`\alpha^N \cdot (ln\alpha)^M` 能大于该常数。
+
+所以，无论 :math:`M` 和 :math:`\alpha` 的值有多大，都必然存在 :math:`N`，使得 :math:`(a^N)^{[M]} > (N^M)^{[M]}`。
+
+这就意味着 :math:`\alpha^N` 的增长率必然能在某个 :math:`N` 后超过 :math:`N^M`，
+所以可以说 :math:`N^M = O(\alpha^N)`。
+
+**习题2.25** 证明: :math:`\frac{N}{N + O(1)} = 1 + O\left(\frac{1}{N}\right)`
+
+证明.
+
+.. math::
+	\because
+	& f(N) = \frac{N}{N + O(1)}
+	\leftrightarrow
+	\exists c_0 > 0 \,,\,
+	\exists N_0 \geqslant 0 \,,\,
+	\forall N \geqslant N_0:
+	f(N) \leqslant \frac{N}{N + c_0}
+	\\
+	\because
+	& N + c_0 > N
+	\rightarrow
+	\forall N > 0:
+	\frac{N}{N + c_0} < \frac{N + c_0}{N}
+	\\
+	\therefore
+	& \exists c_0 > 0 \,,\,
+	\exists N_1 > 0 \,,\,
+	\forall N \geqslant N_1:
+	f(N) \leqslant \frac{N + c_0}{N}
+	\leftrightarrow
+	f(N) = \frac{N + O(1)}{N} = 1 + O(\frac{1}{N})
+	
+(观察图象可发现，:math:`\frac{N}{N + O(1)}` 是一条从左下向右上渐进 :math:`y=1` 的曲线，
+:math:`1 + O\left(\frac{1}{N}\right)` 是一条从左上向右下渐进 :math:`y=1` 的曲线)
