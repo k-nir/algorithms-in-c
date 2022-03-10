@@ -508,3 +508,26 @@ Big-Oh Notation
 	
 (观察图象可发现，:math:`\frac{N}{N + O(1)}` 是一条从左下向右上渐进 :math:`y=1` 的曲线，
 :math:`1 + O\left(\frac{1}{N}\right)` 是一条从左上向右下渐进 :math:`y=1` 的曲线)
+
+**习题2.26** 设 :math:`H_k = N`，请以 :math:`N` 的函数近似地表示 :math:`k`
+
+解.
+
+.. math::
+	\because
+	H_k =& lnk + \gamma + O\left(\frac{1}{k}\right) \\
+	=& lnk + O(1)
+	\\
+	\therefore
+	N =& lnk + O(1) \\
+	\rightarrow
+	k =& e^{N - O(1)} \\
+	=& e^N / e^{O(1)} \\
+	=& O(e^N)
+
+**习题2.27** 设 :math:`lg(k!) = N`，请以 :math:`N` 的函数近似地表示 :math:`k`
+
+解.
+
+.. math::
+	
