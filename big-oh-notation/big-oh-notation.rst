@@ -527,7 +527,125 @@ Big-Oh Notation
 
 **习题2.27** 设 :math:`lg(k!) = N`，请以 :math:`N` 的函数近似地表示 :math:`k`
 
-解.
+解. :math:`lg(k!)` 的近似式为 
 
 .. math::
+	lg(k!) \approx klgk - klge + lg\sqrt{2\pi k}
+
+这个近似式的精度很高，增长率与 :math:`lg(k!)` 保持一致。
+
+因此，可以用大 :math:`\Theta` 表示法将 :math:`lg(k!)` 表示为
+
+.. math::
+	lg(k!) = N = \Theta(klgk)
 	
+即
+
+.. math::
+	\exists c_0 > 0 \,,\,
+	\exists c_1 > 0 \,,\,
+	\exists k_0 \geqslant 0 \,,\,
+	\forall k \geqslant k_0:
+	c_0klg(c_0k) \leqslant lg(k!) \leqslant c_1klg(c_1k)
+	
+即
+
+.. math::
+	\exists c_0 > 0 \,,\,
+	\exists c_1 > 0 \,,\,
+	\exists k_0 \geqslant 0 \,,\,
+	\forall k \geqslant k_0:
+	c_0klgk \leqslant N \leqslant c_1klgk
+	
+我们的目标是用 :math:`N` 的函数表示 :math:`k`，因此我们需要将不等式中 :math:`k` 的数量减少，
+对不等式的所有式子取对数可以使 :math:`klgk` 中的两个 :math:`k` 分开，使我们例目标近一点，
+
+取对数得得
+
+.. math::
+	lg(c_0k) + lglgk \leqslant lgN \leqslant lg(c_1k) + lglgk
+
+取对数后，可以发现 :math:`lglgk` 的增长速度相对于其他项要小得多，因此我们可以想办法把 :math:`lglgk` 消除，
+首先处理 :math:`lg(c_0k) + lglgk` 中的 :math:`lglgk`，
+
+因为 :math:`lglgk` 单调增长
+	
+所以对于任意 :math:`c_0`，必然有
+
+.. math::
+	\exists k_1 \geqslant 2 \,,\,
+	\forall k \geqslant k_1:
+	lglgk \geqslant lg\left(\frac{1}{c_0}\right)
+	
+所以
+
+.. math::
+	\exists c_0 > 0 \,,\,
+	\exists k_1 \geqslant 2 \,,\,
+	\forall k \geqslant k_1:
+	lg(c_0k) + lg\left(\frac{1}{c_0}\right) \leqslant lgN
+	
+即
+
+.. math::
+	\exists c_0 > 0 \,,\,
+	\exists k_1 \geqslant 2 \,,\,
+	\forall k \geqslant k_1:
+	lgk \leqslant lgN
+	
+然后处理 :math:`lg(c_1k) + lglgk` 中的 :math:`lglgk`，
+
+因为
+
+.. math::
+	\forall k \geqslant 2:
+	lglgk < lgk
+	
+所以
+
+.. math::
+	\exists c_1 > 0 \,,\,
+	\exists k_0 \geqslant 2 \,,\,
+	\forall k \geqslant k_0:
+	lgN < lg(c_1k) + lgk
+	
+即
+	
+.. math::
+	\exists c_1 > 0 \,,\,
+	\exists k_0 \geqslant 2 \,,\,
+	\forall k \geqslant k_0:
+	lgN < 2lgk + lg(c_1)
+	
+因为 :math:`lg(c_1)` 是常数，而 :math:`lgk` 单调增长，
+
+所以必然有
+
+.. math::
+	\exists c_2 > 2 \,,\,
+	\exists k_0 \geqslant 2 \,,\,
+	\forall k \geqslant k_0:
+	lgN < c_2lgk
+	
+综上
+
+.. math::
+	\exists c_2 > 2 \,,\,
+	\exists k_2 \geqslant max(k_0,k_1) \,,\,
+	\forall k \geqslant k_2:
+	lgk \leqslant lgN < c_2lgk
+	\leftrightarrow
+	lgN = \Theta(lgk)
+	
+由此
+	
+.. math::
+	\frac{N}{lgN} = \frac{\Theta(klgk)}{\Theta(lgk)} = \Theta(k)
+	
+根据大 :math:`\Theta` 表示法的运算法则，有
+
+.. math::
+	k = \Theta\left(\frac{N}{lgN}\right)
+	
+大 :math:`\Theta` 表示法和大 :math:`\Omega` 表示法
+====================================================
